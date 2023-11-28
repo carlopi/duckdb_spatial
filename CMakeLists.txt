@@ -8,7 +8,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 project(${TARGET_NAME})
 
-add_definitions(-DEMSCRIPTEN)
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${EMSDK}/upstream/emscripten/cmake/Modules/")
+
 add_definitions(-DDUCKDB_MAJOR_VERSION=${DUCKDB_MAJOR_VERSION})
 add_definitions(-DDUCKDB_MINOR_VERSION=${DUCKDB_MINOR_VERSION})
 add_definitions(-DDUCKDB_PATCH_VERSION=${DUCKDB_PATCH_VERSION})
