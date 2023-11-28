@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 project(${TARGET_NAME})
 
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${EMSDK}/upstream/emscripten/cmake/Modules/")
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${EMSDK}/upstream/emscripten/cmake/Modules/" CACHE INTERNAL)
 
 set(CMAKE_SIZEOF_UNSIGNED_INT 32)
 
