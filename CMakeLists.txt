@@ -6,6 +6,8 @@ set(TARGET_NAME spatial)
 set(EXTENSION_NAME ${TARGET_NAME}_extension)
 set(CMAKE_CXX_STANDARD 11)
 
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY") 
+
 project(${TARGET_NAME})
 
 # set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${EMSDK}/upstream/emscripten/cmake/Modules/" CACHE INTERNAL)
