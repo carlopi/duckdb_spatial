@@ -81,7 +81,7 @@ list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/deps/local/")
 message(STATUS "Find libraries path: '${CMAKE_PREFIX_PATH}'")
 
 set(OPENSSL_USE_STATIC_LIBS OFF)
-set(ZLIB_USE_STATIC_LIBS OFF)
+set(ZLIB_USE_STATIC_LIBS ON)
 find_library(SQLITE3_MEMVFS memvfs)
 find_package(ZLIB REQUIRED)
 find_package(SQLite3 REQUIRED)
