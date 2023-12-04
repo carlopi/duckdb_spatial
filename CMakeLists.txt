@@ -14,6 +14,9 @@ add_definitions(-DDUCKDB_MAJOR_VERSION=${DUCKDB_MAJOR_VERSION})
 add_definitions(-DDUCKDB_MINOR_VERSION=${DUCKDB_MINOR_VERSION})
 add_definitions(-DDUCKDB_PATCH_VERSION=${DUCKDB_PATCH_VERSION})
 
+add_definitions(-DSIZEOF_VOID_P=4)
+add_definitions(-DSIZEOF_VOIDP=4)
+
 # Options
 
 # Enable network functionality (OpenSSL and GDAL's CURL based fs/drivers)
