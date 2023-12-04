@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 project(${TARGET_NAME})
 
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${EMSDK}/upstream/emscripten/cmake/Modules/" CACHE INTERNAL)
+# set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${EMSDK}/upstream/emscripten/cmake/Modules/" CACHE INTERNAL)
 
 add_definitions(-DDUCKDB_MAJOR_VERSION=${DUCKDB_MAJOR_VERSION})
 add_definitions(-DDUCKDB_MINOR_VERSION=${DUCKDB_MINOR_VERSION})
@@ -67,15 +67,13 @@ set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH}
 set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES} MD.lib
 )# annoyingly for expat on windows
 
-
-
-
-#list(APPEND CMAKE_FIND_ROOT_PATH "/Users/carlo/duckdb/build/wasm_mvp/deps/local/")
-#list(APPEND CMAKE_PREFIX_PATH "/Users/carlo/duckdb/build/wasm_mvp/deps/local/")
+list(APPEND CMAKE_FIND_ROOT_PATH '${CMAKE_BINARY_DIR}/deps/local/')
+list(APPEND CMAKE_PREFIX_PATH '${CMAKE_BINARY_DIR}/deps/local/')
 
 set(OPENSSL_USE_STATIC_LIBS OFF)
 set(ZLIB_USE_STATIC_LIBS OFF)
 find_library(SQLITE3_MEMVFS memvfs)
+find_package(ZLIB REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(PROJ REQUIRED)
 find_package(SQLite3 REQUIRED)
