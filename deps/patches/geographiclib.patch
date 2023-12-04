@@ -1,0 +1,14 @@
+--- /CMakeLists.txt	2023-12-04 10:58:23
++++ /CMakeLists.txt	2023-12-04 10:58:19
+@@ -260,8 +260,9 @@
+ else ()
+   set (GEOGRAPHICLIB_HAVE_LONG_DOUBLE FALSE)
+ endif ()
+-include (TestBigEndian)
+-test_big_endian (GEOGRAPHICLIB_WORDS_BIGENDIAN)
++#include (TestBigEndian)
++#test_big_endian (GEOGRAPHICLIB_WORDS_BIGENDIAN)
++set(GEOGRAPHICLIB_WORDS_BIGENDIAN FALSE)
+ 
+ # We require C++11
+ set (CMAKE_CXX_STANDARD 11)
