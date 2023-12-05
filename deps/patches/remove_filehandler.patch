@@ -82,3 +82,13 @@ index 945f878f55..f35d0aaf74 100644
    if (MINGW)
      set(THREADS_PREFER_PTHREAD_FLAG ON)
    endif ()
+--- /port/cpl_vsil_unix_stdio_64.cpp	2023-12-05 05:03:29
++++ /port/cpl_vsil_unix_stdio_64.cpp	2023-12-05 05:03:51
+@@ -99,6 +99,7 @@
+ #include "cpl_string.h"
+ #include "cpl_vsi_error.h"
+ 
++#undef UNIX_STDIO_64
+ #if defined(UNIX_STDIO_64)
+ 
+ #ifndef VSI_FTELL64
