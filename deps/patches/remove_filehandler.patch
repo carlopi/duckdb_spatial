@@ -88,7 +88,7 @@ index 945f878f55..f35d0aaf74 100644
  #include "cpl_string.h"
  #include "cpl_vsi_error.h"
  
-+#undef UNIX_STDIO_64
- #if defined(UNIX_STDIO_64)
++#if 0
+-#if defined(UNIX_STDIO_64)
  
  #ifndef VSI_FTELL64
