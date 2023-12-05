@@ -84,12 +84,48 @@ index 945f878f55..f35d0aaf74 100644
    endif ()
 --- /port/cpl_vsil_unix_stdio_64.cpp	2023-12-05 05:03:29
 +++ /port/cpl_vsil_unix_stdio_64.cpp	2023-12-05 05:03:51
-@@ -99,7 +99,7 @@
+@@ -99,8 +99,10 @@
  #include "cpl_string.h"
  #include "cpl_vsi_error.h"
  
--#if defined(UNIX_STDIO_64)
-+#if 0
+-#if UNIX_STDIO_64
  
++
++#if defined(__NOT_REALLY_DEFINED)
++
  #ifndef VSI_FTELL64
  #define VSI_FTELL64 ftell64
+ #endif
+@@ -121,7 +123,12 @@
+ #endif
+ 
+ #else /* not UNIX_STDIO_64 */
+-
++#undef VSI_FTELL64
++#undef VSI_FSEEK64
++#undef VSI_FOPEN64
++#undef VSI_STAT64
++#undef VSI_STAT64_T
++#undef VSI_FTRUNCATE64
+ #ifndef VSI_FTELL64
+ #define VSI_FTELL64 ftell
+ #endif
+@@ -143,18 +150,6 @@
+ 
+ #endif /* ndef UNIX_STDIO_64 */
+ 
+-#ifndef BUILD_WITHOUT_64BIT_OFFSET
+-// Ensure we have working 64 bit API
+-static_assert(sizeof(VSI_FTELL64(nullptr)) == sizeof(vsi_l_offset),
+-              "File API does not seem to support 64-bit offset. "
+-              "If you still want to build GDAL without > 4GB file support, "
+-              "add the -DBUILD_WITHOUT_64BIT_OFFSET define");
+-static_assert(sizeof(VSIStatBufL::st_size) == sizeof(vsi_l_offset),
+-              "File API does not seem to support 64-bit file size. "
+-              "If you still want to build GDAL without > 4GB file support, "
+-              "add the -DBUILD_WITHOUT_64BIT_OFFSET define");
+-#endif
+-
+ /************************************************************************/
+ /* ==================================================================== */
+ /*                       VSIUnixStdioFilesystemHandler                  */
