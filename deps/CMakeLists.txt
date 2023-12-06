@@ -107,6 +107,7 @@ ExternalProject_Add(
     DEPENDS SQLITE3 ZLIB
     URL ${CMAKE_CURRENT_SOURCE_DIR}/vendor/proj-9.1.1.zip
     CONFIGURE_HANDLED_BY_BUILD TRUE
+    PATCH_COMMAND patch -p1 < "${CMAKE_CURRENT_LIST_DIR}/patches/proj.patch"
     CMAKE_ARGS
     # CMake options
     -DCMAKE_PREFIX_PATH=${LOCAL_INSTALL_DIR}
