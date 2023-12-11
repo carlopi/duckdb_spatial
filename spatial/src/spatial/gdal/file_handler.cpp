@@ -56,7 +56,7 @@ public:
 			// Note we performed a cast back to void*
 			pBuffer = static_cast<uint8_t*>(pBuffer) + read_bytes;
 		}
-		return static_cast<size_t>(nSize * nCount);
+		return nCount - (remaining_bytes / nSize);
 	}
 
 	int Eof() override {
