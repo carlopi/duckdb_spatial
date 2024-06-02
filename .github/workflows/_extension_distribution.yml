@@ -341,7 +341,7 @@ jobs:
     strategy:
       matrix: ${{fromJson(needs.generate_matrix.outputs.wasm_matrix)}}
     env:
-      VCPKG_TARGET_TRIPLET: ${{ (inputs.no_vcpkg != 'true') ? matrix.vcpkg_triplet : '' }}
+      VCPKG_TARGET_TRIPLET: ${{ ${{ inputs.no_vcpkg }} != 'true') ? ${{ matrix.vcpkg_triplet }} : '' }}
       VCPKG_TOOLCHAIN_PATH: ${{ (inputs.no_vcpkg != 'true') ? ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake : '' }}
       GEN: Ninja
       DUCKDB_PLATFORM: ${{ matrix.duckdb_arch }}
