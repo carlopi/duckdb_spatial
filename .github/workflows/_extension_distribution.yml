@@ -35,6 +35,10 @@ on:
         required: false
         type: string
         default: "a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6"
+      no_vcpkg:
+        required: false
+        type: boolean
+        default: false
       # Override the default script producing the matrices. Allows specifying custom matrices.
       matrix_parse_script:
         required: false
@@ -178,9 +182,8 @@ jobs:
         run: |
           make test
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
-          if-no-files-found: error
           name: ${{ inputs.extension_name }}-${{ inputs.duckdb_version }}-extension-${{matrix.duckdb_arch}}${{inputs.artifact_postfix}}
           path: |
             build/release/extension/${{ inputs.extension_name }}/${{ inputs.extension_name }}.duckdb_extension
@@ -338,8 +341,8 @@ jobs:
     strategy:
       matrix: ${{fromJson(needs.generate_matrix.outputs.wasm_matrix)}}
     env:
-      VCPKG_TARGET_TRIPLET: ${{ matrix.vcpkg_triplet }}
-      VCPKG_TOOLCHAIN_PATH: ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TARGET_TRIPLET: ${{ (!inputs.no_vcpkg) ? matrix.vcpkg_triplet : '' }}
+      VCPKG_TOOLCHAIN_PATH: ${{ (!inputs.no_vcpkg) ? ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake : '' }}
       GEN: Ninja
       DUCKDB_PLATFORM: ${{ matrix.duckdb_arch }}
 
@@ -360,6 +363,7 @@ jobs:
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11.1
+        if: ${{ inputs.no_vcpkg }}
         with:
           vcpkgGitCommitId: ${{ inputs.vcpkg_commit }}
 
