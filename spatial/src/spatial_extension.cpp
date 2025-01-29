@@ -6,6 +6,7 @@
 #include "duckdb/function/scalar_function.hpp"
 #include "duckdb/parser/parsed_data/create_scalar_function_info.hpp"
 #include "duckdb/parser/parsed_data/create_view_info.hpp"
+#include "duckdb/main/extension_helper.hpp"
 
 #include "spatial/core/module.hpp"
 #include "spatial/gdal/module.hpp"
@@ -93,6 +94,7 @@ void spatial::DocUtil::AddDocumentation(duckdb::DatabaseInstance &db, const char
 namespace duckdb {
 
 static void LoadInternal(DatabaseInstance &instance) {
+	ExtensionHelper::AutoLoadExtension(instance, "httpfs");
 	spatial::core::CoreModule::Register(instance);
 	spatial::proj::ProjModule::Register(instance);
 	spatial::gdal::GdalModule::Register(instance);
